@@ -22,12 +22,9 @@ const Cards = ({chars}) => {
   </Card.Body>
 </Card>
 
-
-
-    
-
-
   )
 }
 
-export default Cards;
+
+export default React.memo(Cards);
+// export default Cards;
