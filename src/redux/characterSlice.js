@@ -12,7 +12,7 @@ export const fetchCharacters = createAsyncThunk(
     const res = await axios(
       `${base_url}/characters?limit=${char_limit}&offset=${char_limit * newpage}`
     );
-    // console.log("data:",res.data);
+
     return res.data;
   }
 );
@@ -20,7 +20,8 @@ export const characterSlice = createSlice({
   name: "characters",
   initialState: {
     items: [],
-    isLoading: false,
+    // isLoading: false,
+    status:'idle',
     newpage: 0,
     nextpage:true,
   },
@@ -29,18 +30,20 @@ export const characterSlice = createSlice({
     [fetchCharacters.fulfilled]: (state, action) => {
       // console.log("action.payload", action.payload);
       state.items = [...state.items, ...action.payload];
-      console.log("page:",state.newpage);
       state.newpage += 1;
-      state.isLoading = false;
+      // state.isLoading = false;
+      state.status='succeeded';
       if(action.payload<12){
 state.nextpage=false
       }
     },
     [fetchCharacters.pending]: (state, action) => {
-      state.isLoading = true;
+      // state.isLoading = true;
+      state.status='loading';
     },
     [fetchCharacters.rejected]: (state, action) => {
-      state.isLoading = false;
+      // state.isLoading = false;
+      state.status='failed';
       state.error = action.error.message;
     },
   },

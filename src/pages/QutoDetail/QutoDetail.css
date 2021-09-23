@@ -1,0 +1,15 @@
+.main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 3rem;
+}
+.text{
+    text-align: center;
+    
+}
+.main q, .main strong{
+    font-size: 2rem;
+}
