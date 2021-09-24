@@ -10,7 +10,7 @@ export const fetchCharacters = createAsyncThunk(
   async (newpage) => {
     // const res = await axios(`${base_url}/characters?limit=10`)
     const res = await axios(
-      `${base_url}/characters?limit=${char_limit}&offset=${char_limit * newpage}`
+      `${base_url}/characters?limit=${char_limit}&offset=${char_limit * Number(newpage)}`
     );
 
     return res.data;
